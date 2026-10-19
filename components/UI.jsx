@@ -1,0 +1,7 @@
+"use client";
+import {months} from "@/lib/api";
+import {X} from "lucide-react";
+export function MonthPicker({month,year,setMonth,setYear}){return <div className="flex flex-wrap gap-2"><select className="field w-[145px]" value={month} onChange={e=>setMonth(Number(e.target.value))}>{months.map((m,i)=><option key={m} value={i+1}>{m}</option>)}</select><input className="field w-[94px]" type="number" min="2000" max="2100" value={year} onChange={e=>setYear(Number(e.target.value))}/></div>}
+export function Modal({title,children,onClose}){return <div className="fixed inset-0 z-[80] flex items-center justify-center bg-[#091e29]/60 p-3" onMouseDown={e=>{if(e.target===e.currentTarget)onClose()}}><div role="dialog" aria-modal="true" aria-label={title} className="max-h-[95vh] w-full max-w-xl overflow-y-auto rounded-3xl bg-white p-6 shadow-2xl md:p-8"><div className="mb-6 flex items-center justify-between"><h2 className="text-xl font-bold">{title}</h2><button aria-label="Close" onClick={onClose} className="rounded-xl p-2 hover:bg-slate-100"><X size={20}/></button></div>{children}</div></div>}
+export function Field({label,children}){return <label className="block text-sm font-semibold text-slate-700"><span className="mb-2 block">{label}</span>{children}</label>}
+export function Notice({error,message}){return <>{error&&<p role="alert" className="mb-4 rounded-xl bg-red-50 p-3 text-sm text-red-700">{error}</p>}{message&&<p role="status" className="mb-4 rounded-xl bg-emerald-50 p-3 text-sm text-emerald-700">{message}</p>}</>}
